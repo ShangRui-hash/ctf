@@ -16,12 +16,7 @@ func main() {
 		}
 		lang = Encoding(lang)
 		w.Header().Set("Content-Type", "text/html")
-		html:=fmt.Sprintf("<html><body><h1>http://localhost:2024/?lang=en</h1></body><script>lang=\"%s\";</script></html>", lang)
-		if strings.Contains(html,"%") {
-			http.Error(w, "Invalid input", http.StatusBadRequest)
-			return
-		}
-		fmt.Fprintf(w, html)
+		fmt.Fprintf(w,"<html><body><h1>http://localhost:2024/?lang=en</h1></body><script>lang=\"%s\";</script></html>", lang)
 	})
 
 	http.ListenAndServe(":2024", nil)
